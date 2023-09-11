@@ -4,9 +4,9 @@ using UnityEngine.AI;
 
 public class WalkState : State
 {
-    [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private Transform _target;
-
+    [SerializeField] private NavMeshAgent _agent;
+    
     private void OnEnable()
     {
         _agent.isStopped = false;
@@ -19,10 +19,6 @@ public class WalkState : State
 
     private void Update()
     {
-        if (_target != null)
-            _agent.SetDestination(_target.position);
-        else
-            Debug.Log("у агента нет цели!");
-        
+        _agent.SetDestination(_target.position);
     }
 }

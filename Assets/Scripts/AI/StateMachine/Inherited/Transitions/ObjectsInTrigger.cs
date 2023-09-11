@@ -1,11 +1,14 @@
 using UnityEngine;
 using FSM;
 
-public class ObjectInTrigger : Transition
+/// <summary> 
+/// Если обьект(ы) существует в триггере то совершить переход
+/// </summary>
+public class ObjectsInTrigger : Transition
 {
+    [SerializeField] private GameObject[] _objects;
     [SerializeField] private Trigger _trigger;
-    [SerializeField] private bool _invertLogic;//Позволяет делать переход при отсутствии объекта в триггер зоне
-    [SerializeField] private GameObject[] _objects;//можно сделать лист и проверять список объектов foreach
+    [SerializeField] private bool _invertLogic;
 
     private void Update()
     {

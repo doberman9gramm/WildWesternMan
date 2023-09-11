@@ -1,6 +1,9 @@
 using FSM;
 using UnityEngine;
 
+/// <summary> 
+/// Переход по дистанции
+/// </summary>
 public class DistanceTransition : Transition
 {
     [SerializeField] private Transform _target;
