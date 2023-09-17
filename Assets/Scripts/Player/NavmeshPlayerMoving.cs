@@ -4,15 +4,9 @@ using UnityEngine.AI;
 
 namespace Player 
 {
-    [RequireComponent(typeof(NavMeshAgent))]
     public class NavmeshPlayerMoving : MonoBehaviour
     {
-        private NavMeshAgent _agent;
-
-        private void Awake()
-        {
-            _agent = GetComponent<NavMeshAgent>();
-        }
+        [SerializeField] private NavMeshAgent _agent;
 
         private void Update()
         {
