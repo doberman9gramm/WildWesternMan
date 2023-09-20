@@ -4,20 +4,17 @@
     Thank you for downloading this package
     I hope you find it useful in your projects
     If you have any questions let me know
-    Cheers!
+    Cheers! https://www.unitycodemonkey.com
     
-               unitycodemonkey.com
+    Video documentation https://www.youtube.com/watch?v=1hsppNzx7_0
     --------------------------------------------------
  */
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Doc https://www.youtube.com/watch?v=1hsppNzx7_0
 public class FunctionTimer { 
-
 
     private static List<FunctionTimer> activeTimerList;
     private static GameObject initGameObject;
@@ -57,13 +54,15 @@ public class FunctionTimer {
         }
     }
 
-
-
     // Dummy class to have access to MonoBehaviour functions
-    private class MonoBehaviourHook : MonoBehaviour {
+    private class MonoBehaviourHook : MonoBehaviour 
+    {
         public Action onUpdate;
-        private void Update() {
-            if (onUpdate != null) onUpdate();
+
+        private void Update()
+        {
+            if (onUpdate != null)
+                onUpdate();
         }
     }
 
@@ -97,5 +96,4 @@ public class FunctionTimer {
         UnityEngine.Object.Destroy(gameObject);
         RemoveTimer(this);
     }
-
 }
