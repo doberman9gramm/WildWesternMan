@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
 
     public void ChangeCameraDistance(float value)
     {
-        ChangeAngle(value);
+        //ChangeAngle(value);
         value += _cinemachineFramingTransposer.m_CameraDistance;
 
         if (value < _minDistance)
