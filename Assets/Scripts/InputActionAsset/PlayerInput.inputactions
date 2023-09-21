@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerInput",
     "maps": [
         {
             "name": "Land",
@@ -10,6 +10,15 @@
                     "type": "Value",
                     "id": "c6392178-7509-40af-a398-d1ee44bb6079",
                     "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ZoomCamera",
+                    "type": "Value",
+                    "id": "0d5f5d30-ed37-41f1-b64a-b59d08fcd962",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -134,6 +143,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bbe6f6c-5aa2-4e5f-819e-bf7107e29244",
+                    "path": "<Joystick>/stick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ZoomCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b2e15c4-a918-4513-af7a-5f8473292e4e",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "Clamp(min=-4,max=4)",
+                    "groups": "",
+                    "action": "ZoomCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
