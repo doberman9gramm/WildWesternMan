@@ -13,12 +13,7 @@ public class DiisablingTransitionsAfterTime : MonoBehaviour
 
     private void OnEnable()
     {
-        FunctionTimer.Create(() => ToggleAllTransitions(_valueAfterTime), _seconds, name);
-    }
-
-    private void OnDisable()
-    {
-        FunctionTimer.StopTimer(name);
+        FunctionTimer.Create(() => ToggleAllTransitions(_valueAfterTime), _seconds);
     }
 
     private void ToggleAllTransitions(bool isEnabled)

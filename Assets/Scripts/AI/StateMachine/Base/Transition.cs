@@ -10,6 +10,8 @@ namespace FSM
 
         public State NextState => _nextState;
 
+        protected void Transit() => NeedTransit = true; 
+
         protected virtual void OnEnable() => NeedTransit = false;
 
         protected virtual void OnDisable() => NeedTransit = false;

@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace FSM
 {
@@ -32,7 +32,6 @@ namespace FSM
             foreach (var transition in _transitions)
                 if (transition != null)
                     transition.enabled = true;
-            
         }
 
         internal void Exit()

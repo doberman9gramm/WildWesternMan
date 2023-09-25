@@ -17,9 +17,4 @@ public class DeadTransition : Transition
         base.OnDisable();
         _health.Dead -= Transit;
     }
-
-    private void Transit()
-    {
-        NeedTransit = true;
-    }
 }

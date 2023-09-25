@@ -1,12 +1,30 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
+[RequireComponent(typeof(SphereCollider))]//стоит еще добавлять SphereColliderCONFIG и RigidBody и RigidbodyCONFIG
 public class Trigger : MonoBehaviour
 {
+    public Action<Collider> ColliderAdded;
+    public Action<Collider> ColliderRemoved;
+
     private List<Collider> _collidersInTrigger = new List<Collider>();
-    private void OnTriggerEnter(Collider other) => _collidersInTrigger.Add(other);
-    private void OnTriggerExit(Collider other) => _collidersInTrigger.Remove(other);
+
+    private void OnTriggerEnter(Collider other) => AddCollider(other);
+
+    private void OnTriggerExit(Collider other) => RemoveCollider(other);
+
+    private void AddCollider(Collider other)
+    {
+        ColliderAdded?.Invoke(other);
+        _collidersInTrigger.Add(other);
+    }
+
+    private bool RemoveCollider(Collider other)
+    {
+        ColliderRemoved?.Invoke(other);
+        return _collidersInTrigger.Remove(other);
+    }
 
     public bool IsGameobjectInTrigger(GameObject _gameObject)
     {

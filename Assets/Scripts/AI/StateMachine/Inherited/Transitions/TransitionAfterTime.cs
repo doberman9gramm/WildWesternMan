@@ -1,7 +1,6 @@
 using FSM;
 using UnityEngine;
 
-
 /// <summary> 
 /// Переход по истечению времени
 /// </summary>
@@ -12,14 +11,6 @@ public class TransitionAfterTime : Transition
     protected override void OnEnable()
     {
         base.OnEnable();
-        FunctionTimer.Create(() => Transit(), _seconds, name);
+        FunctionTimer.Create(() => Transit(), _seconds);
     }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        FunctionTimer.StopTimer(name);
-    }
-
-    private bool Transit() => NeedTransit = true;
 }
