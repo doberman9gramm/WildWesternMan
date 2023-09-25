@@ -133,10 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9083881}
   - component: {fileID: 9083882}
+  - component: {fileID: 9083887}
   - component: {fileID: 9083883}
   - component: {fileID: 9083885}
   - component: {fileID: 9083886}
-  - component: {fileID: 9083887}
   m_Layer: 0
   m_Name: Life
   m_TagString: Untagged
