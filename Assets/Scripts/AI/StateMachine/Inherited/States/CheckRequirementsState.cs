@@ -1,6 +1,7 @@
-using FSM;
-
-public class CheckRequirementsState : State
+namespace FSM
 {
-        //продумать реализацию
+    public class CheckRequirementsState : State
+    {
+        //Проверка потребностей агента
+    }
 }

@@ -1,9 +1,10 @@
-using FSM;
-
-public class IdleState : State
+namespace FSM
 {
-    private void Start()
+    public class IdleState : State
     {
-        //play animation idle
+        private void Start()
+        {
+            //play animation idle
+        }
     }
 }

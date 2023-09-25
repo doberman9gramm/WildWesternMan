@@ -1,16 +1,18 @@
-using FSM;
 using UnityEngine;
 
-/// <summary> 
-/// Переход по истечению времени
-/// </summary>
-public class TransitionAfterTime : Transition
+namespace FSM
 {
-    [SerializeField, Min(0)] private float _seconds;
-
-    protected override void OnEnable()
+    /// <summary> 
+    /// Переход по истечению времени
+    /// </summary>
+    public class TransitionAfterTime : Transition
     {
-        base.OnEnable();
-        FunctionTimer.Create(() => Transit(), _seconds);
+        [SerializeField, Min(0)] private float _seconds;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            FunctionTimer.Create(() => Transit(), _seconds);
+        }
     }
 }

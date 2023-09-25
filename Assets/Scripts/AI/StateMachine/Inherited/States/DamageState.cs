@@ -1,6 +1,7 @@
-using FSM;
-
-public class DamageState : State
+namespace FSM 
 {
-    //анимация получения урона и реализовать здоровье
+    public class DamageState : State
+    {
+        //анимация получения урона
+    }
 }

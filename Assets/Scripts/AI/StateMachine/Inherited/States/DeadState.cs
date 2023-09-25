@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using FSM;
-
-public class DeadState : State
+namespace FSM
 {
-    
+    public class DeadState : State
+    {
+        //Кто убил? Во сколько была смерть? Анимация
+    }
 }

@@ -1,24 +1,26 @@
-using FSM;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WalkState : State
+namespace FSM
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private NavMeshAgent _agent;
-    
-    private void OnEnable()
+    public class WalkState : State
     {
-        _agent.isStopped = false;
-    }
+        [SerializeField] private Transform _target;
+        [SerializeField] private NavMeshAgent _agent;
 
-    private void OnDisable()
-    {
-        _agent.isStopped = true;
-    }
+        private void OnEnable()
+        {
+            _agent.isStopped = false;
+        }
 
-    private void Update()
-    {
-        _agent.SetDestination(_target.position);
+        private void OnDisable()
+        {
+            _agent.isStopped = true;
+        }
+
+        private void Update()
+        {
+            _agent.SetDestination(_target.position);
+        }
     }
 }

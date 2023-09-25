@@ -1,17 +1,19 @@
-using FSM;
 using UnityEngine;
 
-/// <summary> 
-/// Если обьект существует совершить переход
-/// </summary>
-public class ObjectExistsTransition : Transition
+namespace FSM
 {
-    [SerializeField] private GameObject _gameObject;
-    [SerializeField] private bool _objectExists;
-
-    private void Update()
+    /// <summary> 
+    /// Если обьект существует совершить переход
+    /// </summary>
+    public class ObjectExistsTransition : Transition
     {
-        if (_objectExists == (_gameObject != null))
-            NeedTransit = true;
+        [SerializeField] private GameObject _gameObject;
+        [SerializeField] private bool _objectExists;
+
+        private void Update()
+        {
+            if (_objectExists == (_gameObject != null))
+                NeedTransit = true;
+        }
     }
 }
