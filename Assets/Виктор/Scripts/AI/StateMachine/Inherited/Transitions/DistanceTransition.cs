@@ -42,8 +42,6 @@ namespace FSM
                         NeedTransit = true;
                     break;
             }
-
-
         }
 
         public enum DistanceLogic
