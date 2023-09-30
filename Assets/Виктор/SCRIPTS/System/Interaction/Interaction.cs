@@ -15,5 +15,14 @@ namespace InteractableSpace
                 if (collider.TryGetComponent(out Interactable interactable))
                     interactable.Interact();
         }
+
+        public Interactable GetInteractableObject()
+        {
+            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange, layer);
+            foreach (Collider collider in colliderArray)
+                if (collider.TryGetComponent(out Interactable interactable))
+                    return interactable;
+            return null;
+        }
     }
 }
