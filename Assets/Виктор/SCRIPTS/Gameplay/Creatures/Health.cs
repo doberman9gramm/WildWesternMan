@@ -11,8 +11,6 @@ namespace HealthSpace
 
         [SerializeField, Min(0)] private uint _value;
 
-        private void Start() { } 
-
         public void Add(uint value)
         {
             if (_value + value <= _value)
@@ -24,12 +22,14 @@ namespace HealthSpace
 
         public void Reduce(uint value)
         {
-            if (_value <= value)
+            if (value >= _value)
             {
                 Die();
+                _value = 0;
             }
+            else
+                _value -= value;
 
-            _value -= value;
             healthReduced?.Invoke(_value);
         }
 

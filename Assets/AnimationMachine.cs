@@ -15,11 +15,24 @@ namespace AnimationMachine
 
         public void ChangeAnimation(string boolName)
         {
+            ExitCurrentAnimation();
+            ChangeCurrentAnimation(boolName);
+            EnterToCurrentAnimation();
+        }
+
+        private void ExitCurrentAnimation()
+        {
             if (_currentBoolName != "")
                 _animator.SetBool(_currentBoolName, false);
+        }
 
+        private void ChangeCurrentAnimation(string boolName)
+        {
             _currentBoolName = boolName;
+        }
 
+        private void EnterToCurrentAnimation()
+        {
             _animator.SetBool(_currentBoolName, true);
         }
     }
