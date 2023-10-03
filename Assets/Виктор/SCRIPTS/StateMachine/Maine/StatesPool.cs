@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using FSM;
 
 /// <summary>
@@ -8,18 +9,15 @@ using FSM;
 [ExecuteAlways]
 public class StatesPool : MonoBehaviour
 {
-    public List<State> _states;//Стоит инкапсулировать
-
-    private void OnValidate()
+    public List<State> GetStatesList()
     {
-        RefreshList();
-    }
-
-    private void RefreshList()
-    {
-        _states.Clear();
+        List<State> states = new List<State>();
 
         foreach (State state in GetComponents<State>())
-            _states.Add(state);
+            states.Add(state);
+
+        return states;
     }
+
+    public Component[] Components => GetComponents<Component>();
 }
