@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
 
     [Header("Angle")]
     [SerializeField] float _minAngle = 0f;
-    [SerializeField] float _maxAngle = 45f;
+    //[SerializeField] float _maxAngle = 45f;
 
     private void Awake()
     {

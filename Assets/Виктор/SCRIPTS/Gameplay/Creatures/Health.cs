@@ -5,38 +5,35 @@ namespace HealthSpace
 {
     public class Health : MonoBehaviour
     {
-        public Action<uint> healthAdded;
-        public Action<uint> healthReduced;
+        public Action<int> healthAdded;
+        public Action<int> healthReduced;
         public Action Dead;
 
-        [SerializeField, Min(0)] private uint _value;
+        [SerializeField, Min(0)] private int _currentValue;
+        [SerializeField, Min(0)] private int _maxValue;
 
-        public void Add(uint value)
+        private int _minValue;
+        
+        public void Increase(int value)
         {
-            if (_value + value <= _value)
-                return;
-
-            _value += value;
-            healthAdded?.Invoke(_value);
+            ChangeValue(value);
+            healthAdded?.Invoke(value);
         }
 
-        public void Reduce(uint value)
+        public void Decrease(int value)
         {
-            if (value >= _value)
-            {
-                Die();
-                _value = 0;
-            }
-            else
-                _value -= value;
-
-            healthReduced?.Invoke(_value);
+            ChangeValue(-value); 
+            healthReduced?.Invoke(value);
         }
 
-        private void Die()
+        private void ChangeValue(int value)
         {
-            _value = 0;
-            Dead?.Invoke();
+            _currentValue += value;
+            _currentValue = Math.Clamp(_currentValue, _minValue, _maxValue);
+
+            if (_currentValue == _minValue)
+                Dead?.Invoke();
+
         }
     }
 }

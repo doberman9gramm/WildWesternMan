@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AnimationMachine
+namespace AnimationMachineSpace
 {
     [RequireComponent(typeof(Animator))]
     public class AnimationMachine : MonoBehaviour
@@ -22,7 +22,7 @@ namespace AnimationMachine
 
         private void ExitCurrentAnimation()
         {
-            if (_currentBoolName != "")
+            if (string.IsNullOrEmpty(_currentBoolName))
                 _animator.SetBool(_currentBoolName, false);
         }
 
