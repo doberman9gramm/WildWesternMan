@@ -7,7 +7,7 @@ namespace PlayerSpace
     public sealed class PlayerMoving : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent _agent;
-        [SerializeField] private InputActionReference _input;
+        [SerializeField] private InputActionReference _move;
 
         public bool _isWalking { get; private set; }
 
@@ -23,7 +23,7 @@ namespace PlayerSpace
 
         private void Update()
         {
-            Move(_input.action.ReadValue<Vector2>());
+            Move(_move.action.ReadValue<Vector2>());
             _isWalking = CheckWalking();
         }
 

@@ -5,7 +5,7 @@ namespace FSM
 {
     public abstract class State : MonoBehaviour
     {
-        protected List<Transition> _transitions = new List<Transition>();
+        private readonly List<Transition> _transitions = new List<Transition>();
 
         protected void Awake() => FillTransitionList();
 
