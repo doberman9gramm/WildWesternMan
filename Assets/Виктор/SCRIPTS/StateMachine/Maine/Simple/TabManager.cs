@@ -1,27 +1,71 @@
 using FSM;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TabManager : MonoBehaviour
+public class TabManager
 {
-    private StatesPool _statesPool;
-    private List<Tab> _tabs = new List<Tab>();
-    private List<State> _states;
+    private readonly StatePool _statesPool;
 
-    private int _tabsSelected = 0;
-    private int _tabsSelectedBuffer = 0;
+    private int _currentTubIndex = 0;
+    private int _currentTubIndexBuffer = 0;
+    private ComponentsManager _excludedComponents;//Исключенные компоненты
+    private State[] _states;//Исключенные компоненты
 
-    public TabManager(StatesPool statesPool)
+    public TabManager(StatePool statesPool)
     {
         _statesPool = statesPool;
+        _excludedComponents = new ComponentsManager(_statesPool.Components);
+
+        foreach (Component component in _excludedComponents.Components)
+        {
+            if (component.GetType().IsSubclassOf(typeof(State)))
+            {
+                Debug.Log("State finded" + component);//получения стейта
+            }
+            else
+            {
+                Debug.Log(component);
+            }
+        }
     }
 
-    public void CreateTabs()
+    public void OnInspectorGUI()
     {
-        _tabs.Clear(); //Очистить лист
-        _states = _statesPool.GetStatesList();//Полученить лист состояний
-        //FillTabsList(_states.ToArray());//Добавить вкладки состояний в лист
-        //DisplayingTabs();//Отобразить вкладки
-        //ChooseTab();//Выбрать вкладку
+        DisplayingTabs();
+        TabSelected();
+    }
+
+    private void DisplayingTabs()
+    {
+        _states = ChangeStates(_statesPool.GetStatesArray());
+
+        string[] names = new string[_states.Length];
+
+        for (int i = 0; i < _states.Length; i++)
+            names[i] = _states[i].GetType().Name;
+
+        _currentTubIndex = GUILayout.Toolbar(_currentTubIndex, names);
+    }
+    private State[] ChangeStates(State[] states)
+    {
+        return states;//Сделать смену стейта и компонентов
+    }
+
+
+    private void TabSelected()
+    {
+        if (_currentTubIndexBuffer != _currentTubIndex)
+        {
+            _currentTubIndexBuffer = _currentTubIndex;
+        }
+    }
+}
+
+public class ComponentsManager
+{
+    public Component[] Components { get; private set; }
+
+    public ComponentsManager(Component[] components)
+    {
+        Components = components;
     }
 }
