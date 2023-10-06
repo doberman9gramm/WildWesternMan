@@ -3,32 +3,39 @@ using UnityEngine;
 
 public class TabManager
 {
-    private readonly StatePool _statesPool;
+    private readonly StatesPool _statesPool;
 
     private int _currentTubIndex = 0;
     private int _currentTubIndexBuffer = 0;
-    private ComponentsManager _excludedComponents;//Исключенные компоненты
-    private State[] _states;//Исключенные компоненты
 
-    public TabManager(StatePool statesPool)
+    private State[] _states;
+
+    System.Type[] _excludedType = 
+    { 
+        typeof(StateMachine),
+        typeof(StatesPool),
+    };
+
+    public TabManager(StatesPool statesPool)
     {
         _statesPool = statesPool;
-        _excludedComponents = new ComponentsManager(_statesPool.Components);
 
-        foreach (Component component in _excludedComponents.Components)
+        //Какие компоненты должны быть изначально? StateMachine, StatesPool
+        //Как удалить остальные компоненты?
+
+        foreach (Component component in _statesPool.Components)
         {
-            if (component.GetType().IsSubclassOf(typeof(State)))
+            for (int i = 0; i < _excludedType.Length; i++)
             {
-                Debug.Log("State finded" + component);//получения стейта
-            }
-            else
-            {
-                Debug.Log(component);
+                if (component.GetType() == _excludedType[i])
+                {
+                    Debug.Log(component.ToString());
+                }
             }
         }
     }
 
-    public void OnInspectorGUI()
+    public void Update()
     {
         DisplayingTabs();
         TabSelected();
@@ -36,20 +43,22 @@ public class TabManager
 
     private void DisplayingTabs()
     {
-        _states = ChangeStates(_statesPool.GetStatesArray());
+        string[] names = GetNamesOfStates(_statesPool.GetStatesArray());
+
+        _currentTubIndex = GUILayout.Toolbar(_currentTubIndex, names);
+    }
+
+    private string[] GetNamesOfStates(State[] states)
+    {
+        _states = states;
 
         string[] names = new string[_states.Length];
 
         for (int i = 0; i < _states.Length; i++)
             names[i] = _states[i].GetType().Name;
 
-        _currentTubIndex = GUILayout.Toolbar(_currentTubIndex, names);
+        return names;
     }
-    private State[] ChangeStates(State[] states)
-    {
-        return states;//Сделать смену стейта и компонентов
-    }
-
 
     private void TabSelected()
     {
@@ -57,15 +66,5 @@ public class TabManager
         {
             _currentTubIndexBuffer = _currentTubIndex;
         }
-    }
-}
-
-public class ComponentsManager
-{
-    public Component[] Components { get; private set; }
-
-    public ComponentsManager(Component[] components)
-    {
-        Components = components;
     }
 }

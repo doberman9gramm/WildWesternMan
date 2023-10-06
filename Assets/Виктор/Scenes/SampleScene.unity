@@ -132,11 +132,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9083881}
+  - component: {fileID: 9083886}
+  - component: {fileID: 9083888}
   - component: {fileID: 9083882}
   - component: {fileID: 9083887}
   - component: {fileID: 9083883}
   - component: {fileID: 9083885}
-  - component: {fileID: 9083886}
   m_Layer: 0
   m_Name: Life
   m_TagString: Untagged
@@ -229,6 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentValue: 0
   _maxValue: 0
+--- !u!114 &9083888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9083880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2c6ac62946d6b84bb4383b346836f5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &35582996
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,8 +3481,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986864269}
+  - component: {fileID: 1986864275}
   - component: {fileID: 1986864271}
-  - component: {fileID: 1986864272}
   m_Layer: 0
   m_Name: StateMachine
   m_TagString: Untagged
@@ -3506,7 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c6ac62946d6b84bb4383b346836f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1986864272
+--- !u!114 &1986864275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3515,9 +3528,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1986864268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a547683d030bd042ae4f3e60a76cf69, type: 3}
+  m_Script: {fileID: 11500000, guid: d964d76a199810e48824cb8051126d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startState: {fileID: 9083882}
 --- !u!1001 &1993363035
 PrefabInstance:
   m_ObjectHideFlags: 0
