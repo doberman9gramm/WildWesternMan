@@ -33,7 +33,6 @@ namespace HealthSpace
 
             if (_currentValue == _minValue)
                 Dead?.Invoke();
-
         }
     }
 }
