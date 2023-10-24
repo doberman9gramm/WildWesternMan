@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace FSM
 {
-    [RequireComponent(typeof(StatesPool))]
     public class StateMachine : MonoBehaviour
     {
         [SerializeField] private State _startState;

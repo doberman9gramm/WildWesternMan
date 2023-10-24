@@ -1,14 +1,12 @@
 using FSM;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [Serializable]
 public class TabControl
 {
-    public int CurrentTubIndex = 0;
-
+    public int IndexOfCurrentTub = 0;
     private int _currentTabIndexBuffer = 0;
     private readonly StatesPool _statesPool;
 
@@ -19,136 +17,86 @@ public class TabControl
         typeof(StatesPool),
     };
 
-    #region Debug
-    [Header("Debug states lists")]
-    private int _statesIndexPool = 0;
-    [SerializeField] private List<Component> _statesPoolComponents = new List<Component>();
-    [SerializeField] private List<Component> _excludedComponents = new List<Component>();
-    [SerializeField] private List<Component> _NoExcludedComponents = new List<Component>();
-    [SerializeField] private List<Component> _states = new List<Component>();
-    #endregion
+    private int _componentsPoolCount = 0;
 
     [SerializeField] private List<Tab> Tabs = new List<Tab>();
-    private Tab _currentTab;
-
-    public string[] GetTabNames()
-    {
-        string[] names = new string[Tabs.Count];
-        for (int i = 0; i < Tabs.Count; i++)
-            names[i] = Tabs[i].Name;
-
-        return names;
-    }
 
     public TabControl(StatesPool statesPool)
     {
         _statesPool = statesPool;
     }
+    public List<Tab> GetTabs => Tabs;
 
     public void OnInspectorGUIUpdate()
     {
-        UpdateComponents();
-        //Если текщая вкладка изменилась, то 
-        //Скрыть все вкладки кроме текущий
-        foreach (Tab tab in Tabs)
-        {
-            if (tab != _currentTab)
-            {
-                tab.SetComponentsHideFlag(HideFlags.HideInInspector);
-            }
-            else
-            {
-                tab.SetComponentsHideFlag(HideFlags.None);
-            }
-        }
+        if (_statesPool == null)
+            return;
 
-        CurrentTabChanged(CurrentTubIndex);
+        Debug.Log("Up");
+        UpdateComponents(_statesPool.Components);
+        CurrentTabChanged(IndexOfCurrentTub);
     }
+
     /// <summary> Если количество компонентов изменилось то обновить лист компонентов </summary>
-    private void UpdateComponents()
+    private void UpdateComponents(Component[] components)
     {
-        if (_statesIndexPool != _statesPool.Components.Length)
+        if (_componentsPoolCount < _statesPool.Components.Length)//Если компоненты добавили
         {
-            UpdateComponentsList();
-            _statesIndexPool = _statesPoolComponents.Count;
+            Component[] components2 = new Component[components.Length - _componentsPoolCount];
+            for (int i = 0; i < components2.Length; i++)
+                components2[i] = components[_componentsPoolCount + i];
+            SeparateComponents(components2);
+            _componentsPoolCount = _statesPool.Components.Length;
+        }
+        else if (_componentsPoolCount > _statesPool.Components.Length)//Если компоненты удалили
+        {
+            Debug.Log("Компонент удален");
+
+            //КАКОГО БЛЯТЬ ХУЯ КОГДА Я УДАЛЯЮ КОМПОНЕНТ ЧЕРЕЗ ИНСПЕКТОР Я НЕ МОГУ ОЧИСТИТЬ ЛИСТ
+            /*bool isNullOrEmpty = Tabs?.Any() != true;
+            Debug.Log(isNullOrEmpty);*/
+            _componentsPoolCount = _statesPool.Components.Length;
         }
     }
+
     /// <summary> Если вкладку переключили, то скрыть старую и показать новую </summary>
     private void CurrentTabChanged(int newTabIndex)
     {
         if (_currentTabIndexBuffer != newTabIndex)
         {
-            Debug.Log("Change");
             Tabs[_currentTabIndexBuffer].SetComponentsHideFlag(HideFlags.HideInInspector);
-            _currentTab = Tabs[newTabIndex];
             _currentTabIndexBuffer = newTabIndex;
             Tabs[_currentTabIndexBuffer].SetComponentsHideFlag(HideFlags.None);
+            //Сущетсвует баг с отображением компонетов и состояния при переключение вкладок, а этот костыль его решает
+            _statesPool.enabled = false;
+            _statesPool.enabled = true;
         }
-    }
-
-    private void UpdateComponentsList()
-    {
-        ClearAllList();
-        _statesPoolComponents = _statesPool.Components.ToList<Component>();
-        SeparateComponents(_statesPool.Components);
     }
     /// <summary> Разделение компонентов на группы в листах </summary>
     private void SeparateComponents(Component[] components)
     {
         foreach (Component component in components)
         {
-            if (IsComponentOneOfTypeArray(component, _excludedType))//Исключить компоненты по исключенному списку
-            {
-                _excludedComponents.Add(component);
+            if (IsComponentOneOfTypes(component, _excludedType))//Исключить компоненты по исключаещему типу
+            { 
+
             }
             else if (component.GetType().IsSubclassOf(typeof(State)))//В случае обнаружения состояния создать новую вкладку состояния
             {
-                _states.Add(component);
-                _currentTab = new Tab(component as State);
-                Tabs.Add(_currentTab);
+                Tabs.Add(new Tab(component as State));
             }
-            else //В случае обнаружения компонента добавить его к активной вкладке
+            else if (Tabs.Count > 0)
             {
-                _currentTab.Components.Add(component);
+                Tabs[IndexOfCurrentTub].Components.Add(component);
             }
         }
     }
-
-    private void ClearAllList()
-    {
-        _statesPoolComponents.Clear();
-        _excludedComponents.Clear();
-        _NoExcludedComponents.Clear();
-        _states.Clear();
-        Tabs.Clear();
-    }
     /// <summary> Является ли компонент одним из типов </summary>
-    private bool IsComponentOneOfTypeArray(Component component, Type[] types)
+    public bool IsComponentOneOfTypes(Component component, Type[] types)
     {
         foreach (var type in types)
             if (component.GetType() == type)
                 return true;
         return false;
-    }
-}
-
-[Serializable]
-public class Tab
-{
-    private State _state;
-    public List<Component> Components = new List<Component>();
-    public string Name => _state.GetType().Name;
-
-    public Tab(State state)
-    {
-        _state = state;
-    }
-
-    public void SetComponentsHideFlag(HideFlags hideFlags)
-    {
-        _state.hideFlags = hideFlags;
-
-        foreach (var component in Components)
-            component.hideFlags = hideFlags;
     }
 }

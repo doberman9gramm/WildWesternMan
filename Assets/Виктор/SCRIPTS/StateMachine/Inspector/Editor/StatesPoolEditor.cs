@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(StatesPool))]
 public class StatesPoolEditor : Editor
@@ -14,12 +15,26 @@ public class StatesPoolEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        DisplayTabs();
-        _statePool.TabManager.OnInspectorGUIUpdate();
+
+        if (_statePool.Tabs == null)
+            return;
+        DisplayTabsAndGetCurrentTab();
+        _statePool.Tabs.OnInspectorGUIUpdate();
     }
 
-    private void DisplayTabs()
+    private void DisplayTabsAndGetCurrentTab()
     {
-        _statePool.TabManager.CurrentTubIndex = GUILayout.Toolbar(_statePool.TabManager.CurrentTubIndex, _statePool.TabManager.GetTabNames());
+        _statePool.Tabs.IndexOfCurrentTub = GUILayout.Toolbar(
+            _statePool.Tabs.IndexOfCurrentTub,
+            GetTabsNames(_statePool.Tabs.GetTabs));
+    }
+
+    public string[] GetTabsNames(List<Tab> tabs)
+    {
+        string[] names = new string[tabs.Count];
+        for (int i = 0; i < tabs.Count; i++)
+            names[i] = tabs[i].Name;
+
+        return names;
     }
 }

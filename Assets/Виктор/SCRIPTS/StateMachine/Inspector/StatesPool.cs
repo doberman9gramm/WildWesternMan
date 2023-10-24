@@ -1,14 +1,16 @@
 using FSM;
 using UnityEngine;
 
+[ExecuteAlways]
 public class StatesPool : MonoBehaviour
 {
-    [SerializeField] private TabControl _tabManager;
-    public TabControl TabManager => _tabManager;
+    [SerializeField] private TabControl _tabs;
+    public TabControl Tabs => _tabs;
 
-    private void OnValidate()
+    private void Start()
     {
-        _tabManager = new TabControl(this);
+        Debug.Log("Awake");
+        _tabs = new TabControl(this);
     }
 
     public State[] GetStatesArray() => GetComponents<State>();

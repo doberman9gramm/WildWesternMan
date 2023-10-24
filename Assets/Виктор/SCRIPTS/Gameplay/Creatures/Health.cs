@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HealthSpace
 {
-    public class Health : MonoBehaviour
+    public class Health : MonoBehaviour, IDamagable
     {
         public Action<int> healthAdded;
         public Action<int> healthReduced;
@@ -33,6 +33,11 @@ namespace HealthSpace
 
             if (_currentValue == _minValue)
                 Dead?.Invoke();
+        }
+
+        public void GetDamage(float damage)
+        {
+            throw new NotImplementedException();
         }
     }
 }
