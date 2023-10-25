@@ -14,10 +14,8 @@ public class SphereTrigger : MonoBehaviour
         return null;
     }
 
-#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, _radius);
     }
-#endif
 }

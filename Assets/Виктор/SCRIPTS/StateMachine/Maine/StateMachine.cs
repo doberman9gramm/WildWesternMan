@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 namespace FSM
 {
     public class StateMachine : MonoBehaviour
     {
+        public Action<State> NewState;
+
         [SerializeField] private State _startState;
 
         private State _currentState;
@@ -36,6 +39,7 @@ namespace FSM
         {
             _currentState = nextState;
             _currentState.Enter();
+            NewState?.Invoke(_currentState);
         }
     }
 }
