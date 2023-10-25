@@ -1,33 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using FSM;
-using System;
 
-[RequireComponent(typeof(Animator))]
-public class AnimatorFSM : MonoBehaviour
+namespace FSM
 {
-    [SerializeField] private StateMachine stateMachine;
-
-    private Animator animator;
-
-    private void Awake()
+    [RequireComponent(typeof(Animator))]
+    public class AnimatorFSM : MonoBehaviour
     {
-        animator = GetComponent<Animator>();
-    }
+        private Animator animator;
 
-    private void OnEnable()
-    {
-        stateMachine.NewState += ChangeAnimation;
-    }
+        private void Awake() => animator = GetComponent<Animator>();
 
-    private void OnDisable()
-    {
-        stateMachine.NewState -= ChangeAnimation;
-    }
-
-    private void ChangeAnimation(State state)
-    {
-        //animator.
+        public void ChangeAnimation(string nameOfAnimation) => animator.SetTrigger(nameOfAnimation);
     }
 }
