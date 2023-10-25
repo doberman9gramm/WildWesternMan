@@ -7,10 +7,13 @@ namespace FSM
     {
         [SerializeField] private Transform _target;
         [SerializeField] private NavMeshAgent _agent;
+        [SerializeField] private AnimatorFSM _animator;
+        private const string _walk = "Walk";
 
         private void OnEnable()
         {
             _agent.isStopped = false;
+            _animator.ChangeAnimation(_walk);
         }
 
         private void OnDisable()

@@ -509,6 +509,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &182671439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2465843339027340966, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
+  m_PrefabInstance: {fileID: 429516487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &182671440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182671439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a1d7f1c35fbae47b872e1800eeeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &184387582
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +607,7 @@ MonoBehaviour:
   _agent: {fileID: 429516488}
   _target: {fileID: 1740563682}
   _correctionLookAtTarget: {x: 0, y: 0, z: 0}
+  _animator: {fileID: 182671440}
 --- !u!114 &230112991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,7 +623,7 @@ MonoBehaviour:
   _nextState: {fileID: 1839762096}
   _target: {fileID: 1740563682}
   _distance: 1.1
-  _transitionLogic: 0
+  _transitionLogic: 1
 --- !u!1 &254154755
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +839,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5873340794245229959, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 429516490}
+    - targetCorrespondingSourceObject: {fileID: 2465843339027340966, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 182671440}
   m_SourcePrefab: {fileID: 100100000, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
 --- !u!4 &429516488 stripped
 Transform:
@@ -2337,6 +2358,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _target: {fileID: 1740563682}
   _agent: {fileID: 429516490}
+  _animator: {fileID: 182671440}
 --- !u!1 &1229819599
 GameObject:
   m_ObjectHideFlags: 0
@@ -8159,6 +8181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextState: {fileID: 1223620828}
   _seconds: 1
+  _animator: {fileID: 182671440}
 --- !u!114 &1839762096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8171,6 +8194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aa2cb2008feec46aa205ee2f6f8a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 182671440}
 --- !u!1 &1876908948
 GameObject:
   m_ObjectHideFlags: 0
