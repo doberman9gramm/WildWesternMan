@@ -1,7 +1,6 @@
-namespace FSM
-{
-    public class OnGround : State
-    {
+using FSM;
 
-    }
+public class OnGround : State
+{
+
 }

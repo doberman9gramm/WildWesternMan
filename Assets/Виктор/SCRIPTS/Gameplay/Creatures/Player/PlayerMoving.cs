@@ -1,11 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-namespace PlayerSpace 
+namespace PlayerSpace
 {
     public sealed class PlayerMoving : MonoBehaviour
     {
+        public Action<bool> IsWalk;
+
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private InputActionReference _move;
 
@@ -17,20 +20,22 @@ namespace PlayerSpace
         }
 
         private void OnDisable()
-        {   
+        {
             _agent.enabled = false;
         }
 
         private void Update()
         {
             Move(_move.action.ReadValue<Vector2>());
-            _isWalking = CheckWalking();
-        }
+            if (_isWalking != IsWalking())
+            {
+                _isWalking = !_isWalking;
+                IsWalk?.Invoke(_isWalking);
+            }
 
-        private bool CheckWalking()
-        {
-            return _agent.hasPath ? true : false;
         }
+        //изменить неймнинг
+        private bool IsWalking() => _agent.hasPath ? true : false;
 
         private void Move(Vector2 destination)
         {
