@@ -8,14 +8,6 @@ namespace FSM
         [SerializeField] private Transform _agent;
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _correctionLookAtTarget;
-        
-        [SerializeField] private AnimatorFSM _animator;
-        private const string _walk = "Idle";
-
-        private void OnEnable()
-        {
-            _animator.ChangeAnimation(_walk);
-        }
 
         private void Update()
         {
