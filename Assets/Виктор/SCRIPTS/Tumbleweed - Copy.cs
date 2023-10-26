@@ -24,16 +24,7 @@ public class Tumbleweed : MonoBehaviour
     private void RandomAddForce()
     {
         if (_velocity > _rigidbody.velocity.x)
-        {
             _rigidbody.AddForce(Vector3.right * _velocity);
-        }
         FunctionTimer.Create(() => RandomAddForce(), _seconds);
-
-        Debug.Log("Force");
-    }
-
-    private Vector3 GetRandomVector()
-    {
-        return new Vector3(Random.Range(0, 1), Random.Range(0, 1), Random.Range(0, 1));
     }
 }

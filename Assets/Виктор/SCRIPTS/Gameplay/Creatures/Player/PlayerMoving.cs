@@ -27,6 +27,7 @@ namespace PlayerSpace
         private void Update()
         {
             Move(_move.action.ReadValue<Vector2>());
+
             if (_isWalking != IsWalking())
             {
                 _isWalking = !_isWalking;
@@ -35,7 +36,7 @@ namespace PlayerSpace
 
         }
         //изменить неймнинг
-        private bool IsWalking() => _agent.hasPath ? true : false;
+        private bool IsWalking() => _agent.hasPath;
 
         private void Move(Vector2 destination)
         {
