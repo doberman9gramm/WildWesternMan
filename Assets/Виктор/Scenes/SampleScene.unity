@@ -6955,7 +6955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24c953dade9bf045881f5182700f1a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _interactRange: 2
+  _interactRange: 4
   _layer:
     serializedVersion: 2
     m_Bits: 1
@@ -9625,6 +9625,7 @@ GameObject:
   - component: {fileID: 1323146587}
   - component: {fileID: 1323146589}
   - component: {fileID: 1323146588}
+  - component: {fileID: 1323146590}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -9690,6 +9691,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323146586}
   m_CullTransparentMesh: 1
+--- !u!114 &1323146590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323146586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caeae306f6886844ab3b6b4607c77ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _velocity: 0
+  rectTransform: {fileID: 0}
 --- !u!1 &1323206530
 GameObject:
   m_ObjectHideFlags: 0
@@ -11324,7 +11339,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1528609847}
   - component: {fileID: 1528609848}
-  - component: {fileID: 1528609849}
   m_Layer: 7
   m_Name: OnHorse
   m_TagString: Untagged
@@ -11359,27 +11373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c020ec284fbaf49ad54f17686e8101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1528609849
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1528609846}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 5ad20ef734769b344a01cde65c49397f, type: 3}
-  m_Controller: {fileID: 9100000, guid: ffa4b68d5b8ad9d43ad23c76aac326b8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1532728528
 PrefabInstance:
   m_ObjectHideFlags: 0

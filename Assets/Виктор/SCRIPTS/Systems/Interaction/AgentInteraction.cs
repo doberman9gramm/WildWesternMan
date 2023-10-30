@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using System.Collections.Generic;
 
 namespace InteractableSpace
@@ -11,23 +10,41 @@ namespace InteractableSpace
         [SerializeField] private LayerMask _layer;
         [SerializeField] private AgentInteractionGUI _agentInteractionGUI;
 
-
         private List<Interactable> _interactables = new List<Interactable>();
 
         private void Update()
         {
-            string text = GetInteractableObject()?.GetText;
+            Interactable interactable = GetNearestInteractableObject();
+            ShowGUI(interactable?.GetText);
+        }
+
+        private void ShowGUI(string text)
+        {
             _agentInteractionGUI.ShowIntecrationGUi(text, text == null ? AgentInteractionGUI.Visibility.hide : AgentInteractionGUI.Visibility.show);
         }
 
-        public List<Interactable> GetInteractableObject()
+        /// <summary> Получить ближайший интерактивный объект в заданном радиусе </summary>
+        private Interactable GetNearestInteractableObject()
         {
             _interactables.Clear();
             Collider[] colliderArray = Physics.OverlapSphere(transform.position, _interactRange, _layer);
             foreach (Collider collider in colliderArray)
                 if (collider.TryGetComponent(out Interactable interactable))
                     _interactables.Add(interactable);
-            return _interactables;
+
+            Interactable closesInteractable = null;//ближайший обьект
+            if (_interactables.Count != 0)
+                foreach (Interactable interactable in _interactables)
+                    if (closesInteractable == null)
+                        closesInteractable = interactable;
+                    else
+                    {
+                        //Если следующий обьект по списку ближе чем "ближайший обьект", то сделать этот объект ближайшим
+                        if (Vector3.Distance(transform.position, interactable.transform.position) < 
+                            Vector3.Distance(transform.position, closesInteractable.transform.position))
+                            closesInteractable = interactable;
+                    }
+            return closesInteractable;
         }
     }
 }
