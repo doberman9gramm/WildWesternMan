@@ -1,7 +1,7 @@
 using FSM;
 using UnityEngine;
 
-public class Animation : MonoBehaviour
+public class FSMAnimation : MonoBehaviour
 {
     [SerializeField] private AnimatorFSM _animator;
     [SerializeField] private string _nameOfTriggerAnimator = "None";

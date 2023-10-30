@@ -7,7 +7,7 @@ namespace InteractableSpace
         [SerializeField] private string _text = "interact text";
         public void Interact()
         {
-
+        
         }
 
         public string GetText => _text;

@@ -1663,7 +1663,7 @@ GameObject:
   m_Layer: 0
   m_Name: Life
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -6868,6 +6868,7 @@ GameObject:
   - component: {fileID: 971028946}
   - component: {fileID: 971028947}
   - component: {fileID: 971028948}
+  - component: {fileID: 971028949}
   m_Layer: 7
   m_Name: OnGround
   m_TagString: Untagged
@@ -6960,6 +6961,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   _agentInteractionGUI: {fileID: 1888058624}
+  _interactionInput: {fileID: -1573298060922965358, guid: b482016331abe7f498a4d88839a3c264, type: 3}
+--- !u!114 &971028949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971028942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1e8529491a6f346a3c4111957eedd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextState: {fileID: 1528609848}
+  _text: Sit on horse
 --- !u!4 &974371899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e94ba447b239c94cbb2d2e1aed6d2e0, type: 3}
@@ -9625,7 +9641,6 @@ GameObject:
   - component: {fileID: 1323146587}
   - component: {fileID: 1323146589}
   - component: {fileID: 1323146588}
-  - component: {fileID: 1323146590}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -9691,20 +9706,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323146586}
   m_CullTransparentMesh: 1
---- !u!114 &1323146590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323146586}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caeae306f6886844ab3b6b4607c77ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _velocity: 0
-  rectTransform: {fileID: 0}
 --- !u!1 &1323206530
 GameObject:
   m_ObjectHideFlags: 0
@@ -11339,6 +11340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1528609847}
   - component: {fileID: 1528609848}
+  - component: {fileID: 1528609849}
   m_Layer: 7
   m_Name: OnHorse
   m_TagString: Untagged
@@ -11373,6 +11375,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c020ec284fbaf49ad54f17686e8101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1528609849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528609846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ecde9f5aca29f4a810a52fc6797258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextState: {fileID: 971028945}
+  _interactionInput: {fileID: -7587981660396595314, guid: b482016331abe7f498a4d88839a3c264, type: 3}
 --- !u!1001 &1532728528
 PrefabInstance:
   m_ObjectHideFlags: 0

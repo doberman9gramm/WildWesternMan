@@ -1,14 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using System;
 
 namespace InteractableSpace
 {
     //doc https://www.youtube.com/watch?v=LdoImzaY6M4&t=1287s
     public class AgentInteraction : MonoBehaviour
     {
+        public Action<Interactable> Interacte;
+
         [SerializeField] private float _interactRange = 2f;
         [SerializeField] private LayerMask _layer;
         [SerializeField] private AgentInteractionGUI _agentInteractionGUI;
+        [SerializeField] private InputActionReference _interactionInput;
 
         private List<Interactable> _interactables = new List<Interactable>();
 
@@ -16,6 +21,11 @@ namespace InteractableSpace
         {
             Interactable interactable = GetNearestInteractableObject();
             ShowGUI(interactable?.GetText);
+
+            //Вызывает событие Interacte если оно есть и нажата кнопка interactionInput
+            if (interactable != null && _interactionInput.action.ReadValue<float>() != 0)
+                Interacte?.Invoke(interactable);
+            
         }
 
         private void ShowGUI(string text)
