@@ -4,9 +4,9 @@ namespace InteractableSpace
 {
     public class Interactable : MonoBehaviour, IInteractable
     {
-        public void Interact()
-        {
-            Debug.Log("Interact");
-        }
+        [SerializeField] private string _text = "text interact";
+        public void Interact(){}
+
+        public string GetText => _text;
     }
 }

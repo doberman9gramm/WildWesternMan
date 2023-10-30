@@ -8,6 +8,17 @@ namespace FSM
         [SerializeField] private Transform _agent;
         [SerializeField] private Transform _target;
         [SerializeField] private Vector3 _correctionLookAtTarget;
+        [SerializeField] private GameObject _pistol;
+
+        private void OnEnable()
+        {
+            _pistol.SetActive(true);
+        }
+
+        private void OnDisable()
+        {
+            _pistol.SetActive(false);
+        }
 
         private void Update()
         {
