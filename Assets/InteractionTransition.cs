@@ -26,8 +26,8 @@ public class InteractionTransition : Transition
         agentInteraction.Interacte -= EqualText;
     }
 
-    //Разобраться тут с кодом через стринг может передаваться неотлавливаемое пустое или неверное значениеы
-    private void EqualText(Interactable interactable)
+    //Разобраться тут с кодом через стринг может быть БАГ - передаваться неотлавливаемое пустое или неверное значение
+    protected virtual void EqualText(Interactable interactable)
     {
         if (_text == interactable.GetText)
             Transit();
