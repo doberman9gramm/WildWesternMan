@@ -1,7 +1,7 @@
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace InteractableSpace
 {
@@ -17,6 +17,11 @@ namespace InteractableSpace
 
         private List<Interactable> _interactables = new List<Interactable>();
 
+        private void OnDisable()
+        {
+            ShowGUI(null);
+        }
+
         private void Update()
         {
             Interactable interactable = GetNearestInteractableObject();
@@ -25,7 +30,7 @@ namespace InteractableSpace
             //Вызывает событие Interacte если оно есть и нажата кнопка interactionInput
             if (interactable != null && _interactionInput.action.ReadValue<float>() != 0)
                 Interacte?.Invoke(interactable);
-            
+
         }
 
         private void ShowGUI(string text)
@@ -50,7 +55,7 @@ namespace InteractableSpace
                     else
                     {
                         //Если следующий обьект по списку ближе чем "ближайший обьект", то сделать этот объект ближайшим
-                        if (Vector3.Distance(transform.position, interactable.transform.position) < 
+                        if (Vector3.Distance(transform.position, interactable.transform.position) <
                             Vector3.Distance(transform.position, closesInteractable.transform.position))
                             closesInteractable = interactable;
                     }

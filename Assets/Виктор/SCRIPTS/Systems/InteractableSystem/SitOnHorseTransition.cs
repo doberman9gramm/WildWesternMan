@@ -1,12 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using FSM;
 using InteractableSpace;
+using UnityEngine;
 
-public class SitOnHorseTransition : Transition
+public class SitOnHorseTransition : InteractionTransition
 {
-    [SerializeField] private Interactable _horse;
+    private Interactable _horse;
+    //Рефакторить
+    public HorseSaddlePositions TryGetCurrentHorse()
+    {
+        _horse.TryGetComponent(out HorseSaddlePositions horse);
+        return horse;
+    }
 
-
+    protected override void EqualText(Interactable interactable)
+    {
+        base.EqualText(interactable);
+        _horse = interactable;
+    }
 }
