@@ -31,8 +31,5 @@ public class InteractionTransition : Transition
     {
         if (_text == interactable.GetText)
             Transit();
-
-
-        Debug.Log("–азобратьс€ тут с кодом через стринг может передаватьс€ неотлавливаемое пустое или неверное значениеы");
     }
 }

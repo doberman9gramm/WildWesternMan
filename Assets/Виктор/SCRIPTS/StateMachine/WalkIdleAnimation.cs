@@ -1,10 +1,9 @@
-using FSM;
 using PlayerSpace;
 using UnityEngine;
 
 public class WalkIdleAnimation : MonoBehaviour
 {
-    [SerializeField] protected AnimatorFSM animatorFSM;
+    [SerializeField] private Animator _animator;
 
     private const string _walk = "Walk";
     private const string _idle = "Idle";
@@ -16,5 +15,5 @@ public class WalkIdleAnimation : MonoBehaviour
 
     private void OnDisable() => playerMoving.IsWalk -= ChooseAnimationAndSetToAnimator;
 
-    private void ChooseAnimationAndSetToAnimator(bool isWalk) => animatorFSM.ChangeAnimation(isWalk ? _walk : _idle);
+    private void ChooseAnimationAndSetToAnimator(bool isWalk) => _animator.SetTrigger(isWalk ? _walk : _idle);
 }

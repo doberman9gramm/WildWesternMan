@@ -24,7 +24,7 @@ public class CapturingTarget : MonoBehaviour
 
     private Transform TryGetEnemyTarget()
     {
-        Health enemyHealth = _sphereTrigger.TryGetComponentInTrigger<Health>();
+        Health enemyHealth = _sphereTrigger.TryGetComponentInTrigger<Health>();//Почему это делается через здоровье?
         return enemyHealth?.GetComponent<Transform>();
     }
     

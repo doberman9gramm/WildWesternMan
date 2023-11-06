@@ -35,7 +35,7 @@ namespace InteractableSpace
 
         private void ShowGUI(string text)
         {
-            _agentInteractionGUI.ShowIntecrationGUi(text, text == null ? AgentInteractionGUI.Visibility.hide : AgentInteractionGUI.Visibility.show);
+            _agentInteractionGUI?.ShowIntecrationGUi(text, text == null ? AgentInteractionGUI.Visibility.hide : AgentInteractionGUI.Visibility.show);
         }
 
         /// <summary> Получить ближайший интерактивный объект в заданном радиусе </summary>

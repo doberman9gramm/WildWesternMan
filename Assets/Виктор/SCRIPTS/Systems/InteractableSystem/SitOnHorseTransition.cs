@@ -1,13 +1,12 @@
 using InteractableSpace;
-using UnityEngine;
 
 public class SitOnHorseTransition : InteractionTransition
 {
     private Interactable _horse;
     //Рефакторить
-    public HorseSaddlePositions TryGetCurrentHorse()
+    public HorseSaddle TryGetCurrentHorse()
     {
-        _horse.TryGetComponent(out HorseSaddlePositions horse);
+        _horse.TryGetComponent(out HorseSaddle horse);
         return horse;
     }
 

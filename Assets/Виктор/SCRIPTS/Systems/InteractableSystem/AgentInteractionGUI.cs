@@ -9,7 +9,7 @@ public class AgentInteractionGUI : MonoBehaviour
     public void ShowIntecrationGUi(string text, Visibility visibility)
     {
         _text.text = text;
-        _image.SetActive(Visibility.show == visibility);
+        _image?.SetActive(Visibility.show == visibility);
     }
 
     public enum Visibility
