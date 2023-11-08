@@ -1,12 +1,13 @@
 using PlayerSpace;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMoving))]
 public class WalkIdleAnimation : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private string _walk = "Walk";
+    [SerializeField] private string _idle = "Idle";
 
-    private const string _walk = "Walk";
-    private const string _idle = "Idle";
     private PlayerMoving playerMoving;
 
     private void Awake() => playerMoving = GetComponent<PlayerMoving>();
