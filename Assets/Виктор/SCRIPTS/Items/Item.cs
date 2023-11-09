@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ItemData", menuName = "Item")]
-public abstract class Item : ScriptableObject
+[CreateAssetMenu(fileName = "ItemData", menuName = "Item/Item")]
+public class Item : ScriptableObject
 {
-    public string Name;
+    [field: SerializeField] public string Name { get; private set; }
 }

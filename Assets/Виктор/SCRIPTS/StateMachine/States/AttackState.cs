@@ -7,16 +7,16 @@ namespace FSM
         //посмотреть и переделать
         [SerializeField] private Transform _agent;
         [SerializeField] private Transform _target;
-        [SerializeField] private GameObject _pistol;
+        [SerializeField] private GameObject _weapon;
 
         private void OnEnable()
         {
-            _pistol.SetActive(true);
+            _weapon.SetActive(true);
         }
 
         private void OnDisable()
         {
-            _pistol.SetActive(false);
+            _weapon.SetActive(false);
         }
 
         private void Update()

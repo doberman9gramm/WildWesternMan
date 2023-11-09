@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        transform.position += Vector3.left * _velocity * Time.deltaTime;
+        //Debug.Break();
+        transform.Translate(Vector3.forward * _velocity * Time.deltaTime);
     }
 }

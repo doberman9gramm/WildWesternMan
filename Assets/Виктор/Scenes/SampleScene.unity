@@ -1446,7 +1446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _agent: {fileID: 429516488}
   _target: {fileID: 1740563682}
-  _pistol: {fileID: 1892708792}
+  _weapon: {fileID: 1892708792}
 --- !u!114 &230112991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1461,7 +1461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextState: {fileID: 1839762096}
   _target: {fileID: 1740563682}
-  _distance: 10
+  _distance: 25
   _transitionLogic: 1
 --- !u!114 &230112992
 MonoBehaviour:
@@ -3377,6 +3377,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5873340794245229959, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 429516490}
+    - targetCorrespondingSourceObject: {fileID: 2465843339027340966, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1254342987}
   m_SourcePrefab: {fileID: 100100000, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
 --- !u!4 &429516488 stripped
 Transform:
@@ -9958,7 +9961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextState: {fileID: 230112990}
   _target: {fileID: 1740563682}
-  _distance: 5
+  _distance: 10
   _transitionLogic: -1
 --- !u!114 &1223620828
 MonoBehaviour:
@@ -10068,6 +10071,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e94ba447b239c94cbb2d2e1aed6d2e0, type: 3}
   m_PrefabInstance: {fileID: 457298974}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1254342985 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2465843339027340966, guid: bf37fbbea75b0504da93f6bb0bf97b6d, type: 3}
+  m_PrefabInstance: {fileID: 429516487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1254342987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254342985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f309a0897c1f1884faade1e97e8c18af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentGun: {fileID: 1892708792}
 --- !u!1001 &1258307093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10257,6 +10278,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 043def425ec450145b0662dacd7d91c8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1892708798}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 043def425ec450145b0662dacd7d91c8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1892708800}
   m_SourcePrefab: {fileID: 100100000, guid: 043def425ec450145b0662dacd7d91c8, type: 3}
 --- !u!1 &1289525672
 GameObject:
@@ -10713,7 +10737,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 15
   m_Acceleration: 100
-  avoidancePriority: 51
+  avoidancePriority: 0
   m_AngularSpeed: 600
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
@@ -20773,10 +20797,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 822b4798a6b20b44797a62bed8a58fd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 3
+  _radius: 30
   layerMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1892708800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1892708792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4d4fc5a070769458352c710c40ba73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gun: {fileID: 11400000, guid: 5196a5f06fb3f574393da42622e2441b, type: 2}
+  _muzzle: {x: -0.15, y: 0.03, z: -0.24}
 --- !u!1 &1921316936
 GameObject:
   m_ObjectHideFlags: 0
