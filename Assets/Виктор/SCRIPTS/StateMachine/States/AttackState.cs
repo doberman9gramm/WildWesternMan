@@ -8,15 +8,18 @@ namespace FSM
         [SerializeField] private Transform _agent;
         [SerializeField] private Transform _target;
         [SerializeField] private GameObject _weapon;
+        [SerializeField] private bool _hideWeaponOfTransit;
 
         private void OnEnable()
         {
+            
             _weapon.SetActive(true);
         }
 
         private void OnDisable()
         {
-            _weapon.SetActive(false);
+            if (_hideWeaponOfTransit)
+                _weapon.SetActive(false);
         }
 
         private void Update()

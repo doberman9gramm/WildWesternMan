@@ -6,7 +6,9 @@ public class AnimationEventShoot : MonoBehaviour
 
     public void Shoot() 
     {
-        if (_currentGun.TryGetComponent(out IGun gun))//“€жела€ операци€ это костыль
-            gun.TryShoot(); 
+        if (_currentGun.TryGetComponent(out IGun gun))
+            gun.TryShoot();
+        else
+            throw new System.Exception("Ёто не gun");
     } 
 }
