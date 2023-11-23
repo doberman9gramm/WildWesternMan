@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AgentInteraction))]
 public class InteractionTransition : Transition
 {
-    [SerializeField] private string _text;
+    [SerializeField] private string _Uitext;
 
     private AgentInteraction agentInteraction;
 
@@ -29,7 +29,7 @@ public class InteractionTransition : Transition
     //Разобраться тут с кодом через стринг может быть БАГ - передаваться неотлавливаемое пустое или неверное значение
     protected virtual void EqualText(Interactable interactable)
     {
-        if (_text == interactable.GetText)
+        if (_Uitext == interactable.GetText)
             Transit();
     }
 }

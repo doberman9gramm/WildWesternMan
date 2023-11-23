@@ -9,8 +9,6 @@ public class AnimationEventHeavyAttack : MonoBehaviour
     /// </summary>
     private void SetFreeze(bool _isFreeze)
     {
-
-        Debug.Log(_isFreeze);
         _freezeTransitionts.Freeze(_isFreeze);
     }
 

@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""17b2bd36-cee9-4f29-9c0e-1abee6364738"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -241,12 +250,56 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""43dcccbb-7304-4f09-845b-dd5aeb94def9"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c83bc094-753e-4c99-827b-3d9984a741a4"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8eb399b-a1f2-4f59-8a6e-1254d47d4a5f"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StandUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b1ee2b3-8f70-4560-b13a-9fd56a475239"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""025a3e4a-417f-4d10-88f6-f602e780506d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -262,6 +315,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Land_Shoot = m_Land.FindAction("Shoot", throwIfNotFound: true);
         m_Land_Interaction = m_Land.FindAction("Interaction", throwIfNotFound: true);
         m_Land_StandUp = m_Land.FindAction("StandUp", throwIfNotFound: true);
+        m_Land_Pause = m_Land.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -328,6 +382,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Land_Shoot;
     private readonly InputAction m_Land_Interaction;
     private readonly InputAction m_Land_StandUp;
+    private readonly InputAction m_Land_Pause;
     public struct LandActions
     {
         private @PlayerInput m_Wrapper;
@@ -337,6 +392,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Shoot => m_Wrapper.m_Land_Shoot;
         public InputAction @Interaction => m_Wrapper.m_Land_Interaction;
         public InputAction @StandUp => m_Wrapper.m_Land_StandUp;
+        public InputAction @Pause => m_Wrapper.m_Land_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Land; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -361,6 +417,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @StandUp.started += instance.OnStandUp;
             @StandUp.performed += instance.OnStandUp;
             @StandUp.canceled += instance.OnStandUp;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(ILandActions instance)
@@ -380,6 +439,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @StandUp.started -= instance.OnStandUp;
             @StandUp.performed -= instance.OnStandUp;
             @StandUp.canceled -= instance.OnStandUp;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(ILandActions instance)
@@ -404,5 +466,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
         void OnStandUp(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

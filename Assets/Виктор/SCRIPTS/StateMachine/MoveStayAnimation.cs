@@ -2,11 +2,11 @@ using PlayerSpace;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMoving))]
-public class WalkIdleAnimation : MonoBehaviour
+public class MoveStayAnimation : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    [SerializeField] private string _walk = "Walk";
-    [SerializeField] private string _idle = "Idle";
+    [SerializeField] private string _moveTriggerName = "Walk";
+    [SerializeField] private string _stayTriggerName = "Idle";
 
     private PlayerMoving playerMoving;
 
@@ -16,5 +16,5 @@ public class WalkIdleAnimation : MonoBehaviour
 
     private void OnDisable() => playerMoving.IsWalk -= ChooseAnimationAndSetToAnimator;
 
-    private void ChooseAnimationAndSetToAnimator(bool isWalk) => _animator.SetTrigger(isWalk ? _walk : _idle);
+    private void ChooseAnimationAndSetToAnimator(bool isWalk) => _animator.SetTrigger(isWalk ? _moveTriggerName : _stayTriggerName);
 }
