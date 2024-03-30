@@ -15,7 +15,7 @@ namespace FSM
                 _transitions.Add(transition);
         }
 
-        internal State GetNewState()
+        internal State TryGetNewState()
         {
             foreach (var transition in _transitions)
                 if (transition != null)

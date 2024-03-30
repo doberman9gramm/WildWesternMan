@@ -14,7 +14,7 @@ namespace FSM
 
         private void GetAndEnterNewState()
         {
-            var nextState = _currentState.GetNewState();
+            var nextState = _currentState.TryGetNewState();
 
             if (nextState != null)
                 EnterToState(nextState);

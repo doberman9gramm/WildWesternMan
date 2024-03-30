@@ -7,7 +7,7 @@ public class FreezeTransitionts : MonoBehaviour
     [SerializeField] private List<Transition> _transitions;
 
     /// <summary>
-    /// ¬ключить/выключить все переходы на объекте
+    /// ¬ключить/выключить переходы
     /// </summary>
     public void Freeze(bool isEnable)
     {

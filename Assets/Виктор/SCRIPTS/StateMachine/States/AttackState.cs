@@ -4,21 +4,20 @@ namespace FSM
 {
     public class AttackState : State
     {
-        //посмотреть и переделать
+        //Отрефакторить
         [SerializeField] private Transform _agent;
         [SerializeField] private Transform _target;
         [SerializeField] private GameObject _weapon;
-        [SerializeField] private bool _hideWeaponOfTransit;
+        [SerializeField] private bool _hideWeaponOnDisable;
 
         private void OnEnable()
         {
-            
             _weapon.SetActive(true);
         }
 
         private void OnDisable()
         {
-            if (_hideWeaponOfTransit)
+            if (_hideWeaponOnDisable)
                 _weapon.SetActive(false);
         }
 

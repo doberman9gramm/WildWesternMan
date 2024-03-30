@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace PlayerSpace
 {
-    public sealed class PlayerMoving : MonoBehaviour
+    public sealed class Moving : MonoBehaviour
     {
         public Action<bool> IsWalk;
 
@@ -26,21 +26,21 @@ namespace PlayerSpace
 
         private void Update()
         {
-            Move(_move.action.ReadValue<Vector2>());
-
-            if (_isWalking != IsWalking())
+            if (Move(_move.action.ReadValue<Vector2>()))
             {
-                _isWalking = !_isWalking;
-                IsWalk?.Invoke(_isWalking);
+                if (_isWalking != IsWalking())
+                {
+                    _isWalking = !_isWalking;//баг 1) ѕри двойном нажатие на лошади идти куда-то сохран€етс€ анимаци€ идти хот€ персонаж не идЄт
+                    IsWalk?.Invoke(_isWalking);
+                }
             }
-
         }
         //изменить неймнинг
         private bool IsWalking() => _agent.hasPath;
 
-        private void Move(Vector2 destination)
+        private bool Move(Vector2 destination)
         {
-            _agent.SetDestination(transform.position + new Vector3(destination.x, 0, destination.y));
+            return _agent.SetDestination(transform.position + new Vector3(destination.x, 0, destination.y));
         }
     }
 }

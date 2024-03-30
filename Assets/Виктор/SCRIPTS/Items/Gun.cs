@@ -8,11 +8,14 @@ public class Gun : Weapon
     [SerializeField] private bool _isInfinityAmmo;
     [SerializeField] private int _reloadCountAmmo;
 
+    [field: SerializeField] public AudioClip _shootSound { get; private set; }
+    private AudioSource _audioSource;
+
     public void TryShoot(Vector3 muzzle, Quaternion quaternion)
     {
         if (_isInfinityAmmo || Checkbullets())
         {
-            Shoot(muzzle, quaternion);
+            DoShoot(muzzle, quaternion);
         }
         else
         {
@@ -20,10 +23,17 @@ public class Gun : Weapon
         }
     }
 
-    private void Shoot(Vector3 muzzle, Quaternion quaternion)
+    private void DoShoot(Vector3 muzzle, Quaternion quaternion)
     {
-        //Debug.Log("Shoot");
         Instantiate(_bulletPrefab, muzzle, quaternion);
+
+        if (_audioSource == null)
+        {
+            _audioSource = new GameObject("Sound", typeof(AudioSource)).GetComponent<AudioSource>();
+            _audioSource.spatialBlend = 1f;//3D sound
+        }
+
+        _audioSource.PlayOneShot(_shootSound);
     }
 
     private void Reload()

@@ -1,16 +1,16 @@
 using PlayerSpace;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMoving))]
+[RequireComponent(typeof(Moving))]
 public class MoveStayAnimation : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private string _moveTriggerName = "Walk";
     [SerializeField] private string _stayTriggerName = "Idle";
 
-    private PlayerMoving playerMoving;
+    private Moving playerMoving;
 
-    private void Awake() => playerMoving = GetComponent<PlayerMoving>();
+    private void Awake() => playerMoving = GetComponent<Moving>();
 
     private void OnEnable() => playerMoving.IsWalk += ChooseAnimationAndSetToAnimator;
 

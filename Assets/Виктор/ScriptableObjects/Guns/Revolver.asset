@@ -19,3 +19,4 @@ MonoBehaviour:
   _ammo: 0
   _isInfinityAmmo: 1
   _reloadCountAmmo: 0
+  <_shootSound>k__BackingField: {fileID: 8300000, guid: a8abed76dda89544488641811898cd6f, type: 3}

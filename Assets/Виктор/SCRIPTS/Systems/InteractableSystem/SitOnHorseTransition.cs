@@ -4,7 +4,7 @@ public class SitOnHorseTransition : InteractionTransition
 {
     private Interactable _horse;
     //Рефакторить
-    public HorseSaddle TryGetCurrentHorse()
+    public HorseSaddle TryGetCurrentHorseSaddle()
     {
         _horse.TryGetComponent(out HorseSaddle horse);
         return horse;

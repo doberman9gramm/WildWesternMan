@@ -11,7 +11,7 @@ public class HorseSaddle : MonoBehaviour
 
     private Transform _humanoideParent;
 
-    /// <summary> Оседлать лощадь </summary>
+    /// <summary> Оседлать лошадь </summary>
     public void SaddleHorse(Humanoide humanoide, SaddleCondition saddleCondition)
     {
         if (saddleCondition == SaddleCondition.Saddle)

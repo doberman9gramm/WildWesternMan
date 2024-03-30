@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class VolumeSettings : MonoBehaviour
 {
+    [SerializeField] private AudioMixer _audioMixer;
 
     public void SetVolume(float value)
     {
-        Debug.Log(value);
+        _audioMixer.SetFloat("Volume", Mathf.Log(value) * 20);
     }
 }
